@@ -1,12 +1,13 @@
-import { Routes, useRoutes } from 'react-router-dom'
+import { Navigate, Outlet, useRoutes } from 'react-router-dom'
+import { ObjectsMapRoutes } from '@/features/objects-map'
 
-interface ROUTES {}
+export enum ROUTES {
+  OBJECTS_MAP = '/objects-map',
+}
 
 const routes = [
-  {
-    path: '/',
-    element: <></>,
-  },
+  { path: ROUTES.OBJECTS_MAP + '/*', element: <ObjectsMapRoutes /> },
+  { path: '*', element: <Navigate to={ROUTES.OBJECTS_MAP} /> },
 ]
 
 export const AppRoutes = () => {
