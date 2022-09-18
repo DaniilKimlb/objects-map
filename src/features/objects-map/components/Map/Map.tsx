@@ -7,6 +7,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { Object } from '@/features/objects-map'
 import { Spinner } from '@/components/Elements/Spinner'
 import { ObjectMarker } from '@/features/objects-map/components/Map/ObjectMarker'
+import { TITLE_URL_MAP } from '@/config'
 
 const defaultCenterCoordinates = { lat: 32, lng: 44 }
 
@@ -41,9 +42,8 @@ export const Map = () => {
       zoomAnimation={true}
       zoom={3}
       center={defaultCenterCoordinates}
-      scrollWheelZoom={true}
-    >
-      <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+      scrollWheelZoom={true}>
+      <TileLayer url={TITLE_URL_MAP} />
       {objects.data?.map(({ latitude: lat, longitude: lng, id, name }) => (
         <ObjectMarker
           onClick={() => {
