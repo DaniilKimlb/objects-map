@@ -1,1 +1,15 @@
-@import "vendors.css";
+@import 'vendors.css';
+@import 'leaflet/dist/leaflet.css';
+
+html,
+body {
+  scroll-behavior: smooth;
+  margin: 0;
+  padding: 0;
+  font-family: Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+.leaflet-control-container {
+  display: none;
+}
