@@ -1,4 +1,4 @@
-@import 'vendors.css';
+@import 'vendors';
 @import 'leaflet/dist/leaflet.css';
 
 html,
@@ -10,10 +10,4 @@ body {
     'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 }
 
-.leaflet-control-container {
-  @apply hidden;
-}
 
-.leaflet-popup-content {
-  @apply text-center;
-}
