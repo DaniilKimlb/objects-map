@@ -11,12 +11,12 @@ const getObjects = (searchNameBy?: string): Promise<Object[]> => {
 
 type QueryFnType = typeof getObjects
 
-type UseCommentsOptions = {
+type UseObjectsOptions = {
   searchNameBy?: string
   config?: QueryConfig<QueryFnType>
 }
 
-export const useObjects = ({ searchNameBy, config }: UseCommentsOptions) => {
+export const useObjects = ({ searchNameBy, config }: UseObjectsOptions) => {
   return useQuery<ExtractFnReturnType<QueryFnType>>({
     queryKey: ['objects', searchNameBy],
     queryFn: () => getObjects(searchNameBy),
