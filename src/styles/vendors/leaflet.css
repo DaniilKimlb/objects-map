@@ -1,7 +1,7 @@
 .leaflet-control-container {
-    @apply hidden;
+  @apply hidden;
 }
 
 .leaflet-popup-content {
-    @apply text-center;
+  @apply text-center;
 }
