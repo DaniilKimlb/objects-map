@@ -11,5 +11,9 @@ body {
 }
 
 .leaflet-control-container {
-  display: none;
+  @apply hidden;
+}
+
+.leaflet-popup-content {
+  @apply text-center;
 }

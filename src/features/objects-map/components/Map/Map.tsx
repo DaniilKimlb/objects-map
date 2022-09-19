@@ -9,7 +9,7 @@ import { Spinner } from '@/components/Elements/Spinner'
 import { ObjectMarker } from '@/features/objects-map/components/Map/ObjectMarker'
 import { TITLE_URL_MAP } from '@/config'
 
-const defaultCenterCoordinates = { lat: 32, lng: 44 }
+const centerCoordinates = { lat: 32, lng: 44 }
 
 export const Map = () => {
   const objects = useObjects({})
@@ -18,16 +18,18 @@ export const Map = () => {
   const { objectId } = useParams<{ objectId: string }>()
 
   const [isReadyMap, setIsReadyMap] = useState(false)
-  const $map = useRef<leaflet.Map>()
+  const map = useRef<leaflet.Map>()
+
+  const onReadyMap = () => setIsReadyMap(true)
 
   useEffect(() => {
     if (objectId) {
       const object: Object = objects.data?.find((object) => object.id === +objectId)
-      $map.current?.flyTo([object.latitude, object.longitude], 10)
+      map.current?.flyTo([object.latitude, object.longitude], 10)
     }
   }, [objectId, isReadyMap])
 
-  if (objects?.isLoading)
+  if (objects.isLoading)
     return (
       <div className="w-screen h-screen flex items-center justify-center">
         <Spinner />
@@ -36,13 +38,14 @@ export const Map = () => {
 
   return (
     <MapContainer
-      ref={$map}
-      whenReady={() => setIsReadyMap(true)}
+      ref={map}
+      whenReady={onReadyMap}
       className="w-screen h-screen z-10"
       zoomAnimation={true}
       zoom={3}
-      center={defaultCenterCoordinates}
-      scrollWheelZoom={true}>
+      center={centerCoordinates}
+      scrollWheelZoom={true}
+    >
       <TileLayer url={TITLE_URL_MAP} />
       {objects.data?.map(({ latitude: lat, longitude: lng, id, name }) => (
         <ObjectMarker
